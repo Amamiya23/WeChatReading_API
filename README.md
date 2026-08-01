@@ -1,8 +1,6 @@
 # WeRead Reading API（Cloudflare Workers）
 
-这个 Worker 把 `weread-skills` 的微信读书调用封装成一个可供静态博客读取的 JSON API。
-
-[示例页面](https://blog.telyra.top/about/)
+这个 Worker 把 `weread-skills` 的微信读书调用封装成一个可供静态博客读取的 JSON API。[示例页面](https://blog.telyra.top/about/)
 
 ![示例](assets/msedge_Dg7bnrGxvZ.png)
 

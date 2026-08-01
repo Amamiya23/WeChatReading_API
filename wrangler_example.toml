@@ -1,0 +1,10 @@
+name = "weread-reading-api"
+main = "src/index.ts"
+compatibility_date = "2026-07-31"
+
+[vars]
+# Replace with the exact origin of the static blog. Multiple origins may be comma-separated.
+ALLOWED_ORIGIN = "https://your-blog.example.com"
+INCLUDE_PRIVATE = "false"
+CACHE_TTL = "300"
+PROGRESS_LIMIT = "5"

@@ -2,6 +2,8 @@
 
 这个 Worker 把 `weread-skills` 的微信读书调用封装成一个可供静态博客读取的 JSON API。
 
+![示例](assets/msedge_DIOdnnCx34.png)
+
 ## 数据链路
 
 1. 调用 `POST https://i.weread.qq.com/api/agent/gateway`，请求体必须把 `api_name`、业务参数和 `skill_version` 平铺在同一层。

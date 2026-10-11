@@ -1,5 +1,6 @@
 const WEREAD_GATEWAY = "https://i.weread.qq.com/api/agent/gateway";
-const SKILL_VERSION = "1.0.4";
+// Keep this aligned with Tencent/WeChatReading's skills/SKILL.md.
+const SKILL_VERSION = "1.0.5";
 const DEFAULT_PROGRESS_LIMIT = 5;
 const DEFAULT_MIN_READING_PROGRESS = 10;
 const DEFAULT_PROGRESS_FILTER_LIMIT = 100;
@@ -43,6 +44,7 @@ interface PublicBook {
   author?: string;
   cover?: string;
   category?: string;
+  readerLink?: string;
   deepLink?: string;
   status: "reading" | "finished";
   progress?: number;
@@ -296,6 +298,7 @@ function mapBook(raw: JsonObject, progress?: ProgressData): PublicBook | undefin
     author: asString(raw.author),
     cover: asString(raw.cover),
     category: asString(raw.category),
+    readerLink: asString(raw.readerLink),
     deepLink: asString(raw.deepLink),
     status: finished ? "finished" : "reading",
     progress: progress?.progress,

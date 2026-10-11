@@ -2,6 +2,8 @@
 
 这个 Worker 把 `weread-skills` 的微信读书调用封装成一个可供静态博客读取的 JSON API。[示例页面](https://blog.telyra.top/about/)
 
+当前适配官方 skill **1.0.5**。书籍的 `readerLink` 是阅读器入口，`deepLink` 是详情入口；前端打开阅读时应优先使用 `readerLink`。
+
 ![示例](assets/msedge_Dg7bnrGxvZ.png)
 
 ## 数据链路
@@ -80,3 +82,11 @@ renderReading(data.reading, data.finished, data.audio);
 ```
 
 Worker 会返回 CORS 头，并设置 5 分钟的边缘缓存（可通过 `CACHE_TTL` 调整）。如果上游返回 `upgrade_info`，Worker 会返回 `503 upgrade_required`，此时应先按 skill 的升级指引更新版本。
+
+## 升级与排查
+
+官方技能安装/更新命令为 `npx skills add Tencent/WeChatReading -g`。这个命令只更新本地 Agent 的技能文件，不会修改或部署本项目的 Worker。
+
+当 `/api/reading` 返回 `503 upgrade_required` 时，先阅读[官方最新版 SKILL.md](https://github.com/Tencent/WeChatReading/blob/main/skills/SKILL.md) 及 `shelf.md`、`book.md`，确认接口兼容性，再同步 `src/index.ts` 中的 `SKILL_VERSION` 并执行 `npm run typecheck`、`npm run deploy`。
+
+博客的“微信读书数据暂时无法获取”是通用失败提示。排查时在浏览器 Network 中查看 `/api/reading` 的 HTTP 状态和 JSON 错误内容；`/health` 只检查 Worker 是否可达，不验证微信读书接口。
